@@ -1,0 +1,34 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Countries</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Country ID</th>
+        <th>Country Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    @foreach (System.Data.DataRow item in Model.Rows)
+    {
+<tr>
+    <td>@item[0].ToString()</td>
+    <td>@item[1].ToString()</td>
+
+    <td>@Html.ActionLink("Edit", "Edit", new { id = item[0].ToString() })</td>
+    <td>@Html.ActionLink("Delete", "Delete", new { id = item[0].ToString() } ,
+       new {onclick = "return confirm('Are you Sure ?');" })</td>
+</tr>
+
+    }
+
+
+
+</table> 
+
+    <a href="/EmpCountry/Create" style="color:black">  <i class="fas fa-plus fa-lg">Add Countries </i> </a>
